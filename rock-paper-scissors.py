@@ -4,7 +4,7 @@ import random
 
 possible_choices = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
-vic_conditions = {
+victory_conditions = {
     'rock': ['scissors', 'lizard'],
     'paper': ['rock', 'spock'],
     'scissors': ['paper', 'lizard'],
@@ -30,38 +30,38 @@ def ask_user_choice():
     return choice
 
 
-def gen_comp_choice():
+def gen_computer_choice():
     choice = random.choice(possible_choices)
     return choice
 
 
-def determine_winner(user_choice, comp_choice, win_record):
-    defeats = vic_conditions[user_choice]
+def determine_winner(user_choice, computer_choice, win_record):
+    defeats = victory_conditions[user_choice]
 
-    if user_choice == comp_choice:
+    if user_choice == computer_choice:
         print(f'You both chose {user_choice.title()}. It is a tie!')
         win_record[2] += 1
-    elif comp_choice in defeats:
-        print(f'{user_choice.title()} beats {comp_choice.title()}. You win!')
+    elif computer_choice in defeats:
+        print(f'{user_choice.title()} beats {computer_choice.title()}. You win!')
         win_record[0] += 1
     else:
-        print(f'{comp_choice.title()} beats {user_choice.title()}. You lose!')
+        print(f'{computer_choice.title()} beats {user_choice.title()}. You lose!')
         win_record[1] += 1
     return win_record
 
 
-win_cntr = [0, 0, 0]  # win, lose, tie
+win_counter = [0, 0, 0]  # win, lose, tie
 
 while True:
     user_choice = ask_user_choice()
 
-    comp_choice = gen_comp_choice()
+    computer_choice = gen_computer_choice()
 
-    print(f'\nYou chose {user_choice.title()}, the computer chose {comp_choice.title()}.\n')
+    print(f'\nYou chose {user_choice.title()}, the computer chose {computer_choice.title()}.\n')
 
-    determine_winner(user_choice, comp_choice, win_cntr)
+    determine_winner(user_choice, computer_choice, win_counter)
 
-    print(f'\n{win_cntr[0]} wins, {win_cntr[1]} losses, {win_cntr[2]} ties\n')
+    print(f'\n{win_counter[0]} wins, {win_counter[1]} losses, {win_counter[2]} ties\n')
 
     keep_playing = input('Would you like to play again? (Y/N) ')
     if keep_playing.lower() in ['n', 'no']:
