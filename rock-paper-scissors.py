@@ -26,7 +26,7 @@ def ask_user_choice():
         choice = input(f'Enter a choice ({choices}): ')
         choice = choice.lower().strip()
         if choice not in possible_choices:
-            print('Choice not recognised!')
+            print('Choice not recognized!')
     return choice
 
 
